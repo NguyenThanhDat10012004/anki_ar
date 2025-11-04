@@ -1,0 +1,4 @@
+*.tmp.glb
+*.q.glb
+@data_backup_*/
+node_modules/
