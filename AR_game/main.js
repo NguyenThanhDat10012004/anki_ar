@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animal.scene = gltf.scene;
         animal.scene.scale.set(0.05, 0.05, 0.05);
         animal.scene.position.set(animal.position.x, animal.position.y, animal.position.z);
+        animal.scene.rotation.set(Math.PI / 2, 0, 0);
         animal.scene.userData.name = animal.name; 
         anchor.group.add(animal.scene);
       } catch (err) { } // Bỏ qua log lỗi
