@@ -213,41 +213,30 @@ document.addEventListener('DOMContentLoaded', () => {
     gameMode = 'voice';
 
     if ('speechSynthesis' in window) {
-        // Cờ để đảm bảo hàm chỉ chạy 1 lần
-        let hasUnlocked = false;
-
-        // Hàm này sẽ được gọi khi "mở khóa" thành công
-        const unlockAndStart = () => {
-            if (hasUnlocked) return; // Nếu đã chạy rồi thì thôi
-            hasUnlocked = true;
-            showGameScreen(); // Bắt đầu game
-        };
-
         // 1. Dọn dẹp mọi hàng đợi cũ
         speechSynthesis.cancel();
         if (speechSynthesis.paused) {
             speechSynthesis.resume();
         }
 
-        // 2. Tạo âm thanh "mồi" (dùng 1 khoảng trắng, tin cậy hơn là rỗng)
-        const utterance = new SpeechSynthesisUtterance(" "); 
+        // 2. Tạo một âm thanh "mồi" RỖNG (hoặc " ")
+        // và PHÁT NGAY LẬP TỨC.
+        // Đây chính là "chìa khóa" để mở quyền phát âm thanh
+        const utterance = new SpeechSynthesisUtterance(''); // Dùng '' (rỗng) là đủ
         utterance.volume = 0; // Đặt âm lượng = 0
-        
-        // 3. (QUAN TRỌNG) Bắt đầu game KHI âm thanh "mồi" nói XONG
-        utterance.onend = unlockAndStart;
-
-        // 4. Phát âm "mồi"
         speechSynthesis.speak(utterance);
-        
-        // 5. Thêm "bảo hiểm"
-        // Đôi khi sự kiện onend không chạy, chúng ta ép nó chạy sau 500ms
-        setTimeout(unlockAndStart, 500); 
+
+        // 3. BẮT ĐẦU GAME NGAY LẬP TỨC
+        // Không cần đợi 'onend' hay 'setTimeout'
+        // Hành động .speak() ở trên đã mở khóa cho toàn bộ trang web
+        showGameScreen();
 
     } else {
         // Nếu trình duyệt không hỗ trợ, cứ chạy
         showGameScreen();
     }
-  });
+});
+
 
   document.querySelector('#play-again-btn').addEventListener('click', () => {
     showGameScreen();
