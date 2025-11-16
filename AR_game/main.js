@@ -211,8 +211,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.querySelector('#start-voice-game-btn').addEventListener('click', () => {
     gameMode = 'voice';
-    showGameScreen();
+
+    if ('speechSynthesis' in window) {
+        // Cờ để đảm bảo hàm chỉ chạy 1 lần
+        let hasUnlocked = false;
+
+        // Hàm này sẽ được gọi khi "mở khóa" thành công
+        const unlockAndStart = () => {
+            if (hasUnlocked) return; // Nếu đã chạy rồi thì thôi
+            hasUnlocked = true;
+            showGameScreen(); // Bắt đầu game
+        };
+
+        // 1. Dọn dẹp mọi hàng đợi cũ
+        speechSynthesis.cancel();
+        if (speechSynthesis.paused) {
+            speechSynthesis.resume();
+        }
+
+        // 2. Tạo âm thanh "mồi" (dùng 1 khoảng trắng, tin cậy hơn là rỗng)
+        const utterance = new SpeechSynthesisUtterance(" "); 
+        utterance.volume = 0; // Đặt âm lượng = 0
+        
+        // 3. (QUAN TRỌNG) Bắt đầu game KHI âm thanh "mồi" nói XONG
+        utterance.onend = unlockAndStart;
+
+        // 4. Phát âm "mồi"
+        speechSynthesis.speak(utterance);
+        
+        // 5. Thêm "bảo hiểm"
+        // Đôi khi sự kiện onend không chạy, chúng ta ép nó chạy sau 500ms
+        setTimeout(unlockAndStart, 500); 
+
+    } else {
+        // Nếu trình duyệt không hỗ trợ, cứ chạy
+        showGameScreen();
+    }
   });
+
   document.querySelector('#play-again-btn').addEventListener('click', () => {
     showGameScreen();
   });
