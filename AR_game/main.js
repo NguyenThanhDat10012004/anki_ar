@@ -139,8 +139,9 @@ function startGame() {
     
     updateStatusMessage("Trò chơi bắt đầu!");
     replayAudioBtn.classList.add('hidden'); 
+    pickNewWord();
     setTimeout(() => {
-        pickNewWord();
+        
         isGameActive = true; // 👈 SỬA LỖI 2: Bật cờ game sau khi từ mới được chọn
     }, 1000); 
 }
