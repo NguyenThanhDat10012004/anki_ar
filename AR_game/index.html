@@ -5,9 +5,37 @@
     <script src="../libs/mindar/mindar-image-three.prod.js"></script>
     <script src="./main.js" type="module"></script>
     <style>
-      html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+      html, body {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        background-color: transparent; /* Nền tối cho UI */
+      }
       
-      /* ⬇️ PHẦN CSS MỚI ĐÃ THÊM ⬇️ */
+      /* Overlay chung cho tất cả các màn hình UI */
+      .ui-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column; /* Để các phần tử bên trong xếp chồng lên nhau */
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.7); /* Nền mờ */
+        color: white;
+        z-index: 200; /* Cao hơn status-message */
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* CSS cho status-message (vẫn giữ nguyên) */
       #status-message {
         position: fixed;
         bottom: 20px;
@@ -19,11 +47,196 @@
         font-family: Arial, sans-serif;
         font-size: 18px;
         border-radius: 10px;
-        z-index: 100; /* Đảm bảo nó nổi lên trên */
+        z-index: 100;
+        /* THAY ĐỔI: Thêm border cho đẹp hơn */
+        border: 2px solid #5cb85c; 
+        box-shadow: 0 0 15px rgba(92, 184, 92, 0.5); /* Hiệu ứng tỏa sáng */
       }
+      
+
+      /* ⬇️ CSS MỚI CHO CÁC MÀN HÌNH UI ⬇️ */
+
+      /* Nút chung */
+      .game-button {
+        background-color: #5cb85c; /* Màu xanh lá cây */
+        color: white;
+        padding: 15px 30px;
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px #4cae4c; /* Tạo hiệu ứng 3D */
+      }
+
+      .game-button:hover {
+        background-color: #4cae4c;
+        transform: translateY(-2px); /* Nút nhô lên khi hover */
+        box-shadow: 0 6px #398439;
+      }
+
+      .game-button:active {
+        background-color: #398439;
+        transform: translateY(2px); /* Nút lún xuống khi click */
+        box-shadow: 0 2px #398439;
+      }
+
+      /* Màn hình khởi động */
+      #start-screen {
+        /* Đã được định nghĩa trong .ui-overlay */
+      }
+      #start-screen h1 {
+        font-size: 4em;
+        margin-bottom: 40px;
+        text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+      }
+
+      /* Màn hình kết thúc/thắng cuộc */
+      #end-screen {
+        /* Đã được định nghĩa trong .ui-overlay */
+        background-color: rgba(0, 0, 0, 0.8); /* Nền tối hơn */
+      }
+
+      .score-panel {
+        background-color: #f7f7f7;
+        border: 5px solid #5cb85c;
+        border-radius: 20px;
+        padding: 30px 40px;
+        text-align: center;
+        color: #333;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        max-width: 400px;
+        width: 90%;
+        margin-bottom: 30px;
+      }
+
+      .score-panel h2 {
+        font-size: 3em;
+        color: #d9534f; /* Màu đỏ cho LOSE, sẽ đổi thành xanh lá cho VICTORY */
+        margin-top: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+      }
+
+      .score-panel .stars {
+        margin: 20px 0;
+      }
+      .score-panel .stars img {
+        width: 60px;
+        height: 60px;
+        margin: 0 5px;
+      }
+
+      .score-panel p {
+        font-size: 1.5em;
+        margin: 10px 0;
+      }
+
+      .score-panel .score-details {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .score-panel .score-details span {
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+      }
+      .score-panel .score-details img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+
+      .end-screen-buttons {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép các nút xuống dòng */
+        justify-content: center;
+        gap: 15px;
+        max-width: 600px;
+        width: 90%;
+      }
+
+      /* Ẩn MindAR khi UI Overlay đang hiển thị */
+      mindar-image-three {
+        display: block; /* Mặc định của MindAR */
+      }
+      .mindar-hidden mindar-image-three {
+        display: none;
+      }
+      /* ... (thêm vào cuối thẻ <style>) ... */
+
+#replay-audio-btn {
+    position: fixed;
+    bottom: 80px; /* Đặt phía trên status-message một chút */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #5bc0de; /* Màu xanh dương */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Nút tròn */
+    width: 50px;
+    height: 50px;
+    font-size: 24px; /* Kích thước icon */
+    cursor: pointer;
+    z-index: 101; /* Trên status-message */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#replay-audio-btn:hover {
+    background-color: #46b8da;
+}
+
+#replay-audio-btn:active {
+    transform: translateX(-50%) scale(0.95); /* Hiệu ứng nhấn */
+}
+
+/* Icon loa (sử dụng emoji) */
+#replay-audio-btn::before {
+    content: '🔊'; 
+}
+
+/* Lớp 'hidden' đã có, nhưng đảm bảo nó có !important */
+.hidden {
+    display: none !important;
+}
+
     </style>
   </head>
   <body>
+    <div id="start-screen" class="ui-overlay">
+      <h1>CHỌN CHẾ ĐỘ CHƠI</h1>
+      <button id="start-new-game-btn" class="game-button">BẮT ĐẦU GAME MỚI (Văn bản)</button>
+      <button id="start-voice-game-btn" class="game-button">CHƠI VỚI GIỌNG NÓI</button>
+      </div>
+
+    <div id="end-screen" class="ui-overlay hidden">
+      <div class="score-panel">
+        <h2 id="end-title">THUA CUỘC!</h2> <div class="stars" id="stars-display">
+          </div>
+        <p>ĐIỂM CỦA BẠN: <strong id="final-score">0</strong></p>
+        <div class="score-details">
+            <span><img src="https://img.freepik.com/premium-vector/game-big-diamond_118813-3446.jpg" alt="Diamonds"> <span id="final-diamonds">0</span></span>
+            <span><img src="https://media.gettyimages.com/id/1903985199/vector/heart-flat-icon.jpg?s=612x612&w=gi&k=20&c=gU-LcDu5K9LDVDIvhMoFSfCcDHFmpZp-2_1j2iGTXoo=" alt="Hearts"> <span id="final-hearts">0</span></span>
+        </div>
+      </div>
+      <div class="end-screen-buttons">
+        <button id="play-again-btn" class="game-button">CHƠI LẠI</button>
+        <button id="select-mode-btn" class="game-button">CHỌN CHẾ ĐỘ</button>
+        <button id="home-btn" class="game-button">TRANG CHỦ</button>
+        <button id="exit-btn" class="game-button">THOÁT</button>
+      </div>
+    </div>
+
+    <div id="mindar-container">
+      <mindar-image-three container="#mindar-container" image-target-src="./target.mind">
+        </mindar-image-three>
+    </div>
+
     <div id="status-message"></div>
+    <div id="status-message"></div>
+    <button id="replay-audio-btn" class="hidden"></button> 
   </body>
 </html>
