@@ -1,0 +1,72 @@
+[
+  {
+    "id": "0",
+    "category_name": "animal",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/animal/zoo.glb"
+  },
+  {
+    "id": "1",
+    "category_name": "career",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/career/career.glb"
+  },
+  {
+    "id": "2",
+    "category_name": "clothes",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/clothes/clothes.glb"
+  },
+  {
+    "id": "3",
+    "category_name": "family",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/family/family.glb"
+  },
+  {
+    "id": "4",
+    "category_name": "food",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/food/food.glb"
+  },
+  {
+    "id": "5",
+    "category_name": "furniture",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/furniture/furniture.glb"
+  },
+  {
+    "id": "6",
+    "category_name": "hobbies",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/hobbies/hobbies.glb"
+  },
+  {
+    "id": "7",
+    "category_name": "job",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/job/job.glb"
+  },
+  {
+    "id": "8",
+    "category_name": "politics",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/politics/politics.glb"
+  },
+  {
+    "id": "9",
+    "category_name": "science",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/science/science.glb"
+  },
+  {
+    "id": "10",
+    "category_name": "sport",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/sport/sport.glb"
+  },
+  {
+    "id": "11",
+    "category_name": "technology",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/technology/technology.glb"
+  },
+  {
+    "id": "12",
+    "category_name": "transportation",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/transportation/transportation.glb"
+  },
+  {
+    "id": "13",
+    "category_name": "travel",
+    "link_glb": "https://github.com/NguyenThanhDat10012004/anki_ar/blob/main/data/scene/travel/travel.glb"
+  }
+]

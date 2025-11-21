@@ -6,7 +6,7 @@ ROOT="/home/tuantd/workspace/anki_ar"
 BIN="${ROOT}/node_modules/.bin/gltf-transform"
 CSV="${ROOT}/scripts/results-draco.csv"
 
-# Bit-depth có thể override qua env
+# Bit-depth có thể override qua env 
 QPOS="${QPOS:-14}"
 QNORM="${QNORM:-10}"
 QTEX="${QTEX:-12}"
