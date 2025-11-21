@@ -106,3 +106,17 @@ path,before_bytes,after_bytes,saved_bytes,saved_pct,action,qpos, qnorm, qtex, ti
 /home/tuantd/workspace/anki_ar/data/family/grandfather.glb,7481460,7161980,319480,4,replaced,14,10,12,2025-11-04T21:05:16+0700
 /home/tuantd/workspace/anki_ar/data/family/mother.glb,7018620,6688788,329832,4,replaced,14,10,12,2025-11-04T21:05:18+0700
 /home/tuantd/workspace/anki_ar/data/family/sister.glb,8177200,7843932,333268,4,replaced,14,10,12,2025-11-04T21:05:21+0700
+data/scene/scene/animal/zoo.glb,65366676,17246612,48120064,73,replaced,14,10,12,2025-11-21T18:57:21+0700
+data/scene/scene/career/career.glb,16574656,8062472,8512184,51,replaced,14,10,12,2025-11-21T18:57:23+0700
+data/scene/scene/clothes/clothes.glb,79722692,19679356,60043336,75,replaced,14,10,12,2025-11-21T18:57:39+0700
+data/scene/scene/family/family.glb,49024172,14862340,34161832,69,replaced,14,10,12,2025-11-21T18:57:51+0700
+data/scene/scene/food/food.glb,28450200,9151860,19298340,67,replaced,14,10,12,2025-11-21T18:57:56+0700
+data/scene/scene/furniture/furniture.glb,19618044,9946572,9671472,49,replaced,14,10,12,2025-11-21T18:57:59+0700
+data/scene/scene/hobbies/hobbies.glb,46701032,12247872,34453160,73,replaced,14,10,12,2025-11-21T18:58:11+0700
+data/scene/scene/job/job.glb,17573684,7584668,9989016,56,replaced,14,10,12,2025-11-21T18:58:16+0700
+data/scene/scene/politics/politics.glb,16574656,8062472,8512184,51,replaced,14,10,12,2025-11-21T18:58:20+0700
+data/scene/scene/science/science.glb,19618044,9946572,9671472,49,replaced,14,10,12,2025-11-21T18:58:25+0700
+data/scene/scene/sport/sport.glb,17573684,7584668,9989016,56,replaced,14,10,12,2025-11-21T18:58:30+0700
+data/scene/scene/technology/technology.glb,17276784,9719740,7557044,43,replaced,14,10,12,2025-11-21T18:58:35+0700
+data/scene/scene/transportation/transportation.glb,32436228,11050660,21385568,65,replaced,14,10,12,2025-11-21T18:58:42+0700
+data/scene/scene/travel/travel.glb,38502364,14560752,23941612,62,replaced,14,10,12,2025-11-21T18:58:47+0700
